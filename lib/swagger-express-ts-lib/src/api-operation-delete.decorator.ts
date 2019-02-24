@@ -1,5 +1,6 @@
 import { SwaggerService } from './swagger.service';
 import { IApiOperationArgsBase } from './i-api-operation-args.base';
+import { addModel } from './model-generator';
 export interface IApiOperationDeleteArgs extends IApiOperationArgsBase {}
 
 export function ApiOperationDelete(
@@ -10,6 +11,7 @@ export function ApiOperationDelete(
         propertyKey: string | symbol,
         descriptor: PropertyDescriptor
     ) => {
+        addModel(args);
         SwaggerService.getInstance().addOperationDelete(
             args,
             target,

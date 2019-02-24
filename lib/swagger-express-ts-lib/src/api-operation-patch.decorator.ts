@@ -1,5 +1,6 @@
 import { SwaggerService } from './swagger.service';
 import { IApiOperationArgsBase } from './i-api-operation-args.base';
+import { addModel } from './model-generator';
 export interface IApiOperationPatchArgs extends IApiOperationArgsBase {}
 
 export function ApiOperationPatch(
@@ -10,6 +11,7 @@ export function ApiOperationPatch(
         propertyKey: string | symbol,
         descriptor: PropertyDescriptor
     ) => {
+        addModel(args);
         SwaggerService.getInstance().addOperationPatch(
             args,
             target,
